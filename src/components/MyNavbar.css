@@ -1,0 +1,48 @@
+.navbar{
+    background-color: white;
+}
+.head{
+    font-weight: 600;
+    font-size: 28px !important; 
+}
+h4{
+    color: red !important;
+}
+.btnAndcart{
+    display: flex;
+    width: 25%;
+    justify-content: space-around;
+}
+img{
+    height: 40px;
+}
+.nav{
+    font-size: 18px;
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+}
+.cart-counter{
+width: 22px;
+height: 22px;
+display: flex;
+justify-content: center;
+align-items: center;
+position:absolute;
+top:0px;
+right: -10px;
+transform: scale(.8);
+border-radius: 11px;
+font-size: 14px;
+background: red;
+color: white;
+}
+.nav .active{
+
+  border-bottom: 3px  solid rgb(224, 136, 13) !important;  
+
+    color: black !important;
+    font-weight: 500 !important;
+    transform: translateY(-5px);
+}
+

@@ -1,0 +1,23 @@
+.footer{
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ul{
+    display: flex;
+    gap: 4vw;
+    margin-top: 20px;
+    justify-content: center;
+}
+.ul:hover{
+    cursor: pointer;
+}
+.ul img{
+    height: 35px;
+    margin: 10px;
+}
+.icon{
+    border-bottom: 1px solid black;
+    width:80%;
+}

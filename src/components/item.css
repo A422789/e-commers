@@ -1,0 +1,12 @@
+@media(min-width: 1025px) {
+    .item{
+        max-width: 20%;
+    }
+}
+.item{
+    transition-duration: .5s;
+}
+.item:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
