@@ -10,23 +10,35 @@ import { createPortal } from 'react-dom';
 import { CartContext } from '../Context/CartContaxt';
 
 const Product = () => {
-    const {all_product}=useContext(ShopContext)
+    const state=useContext(ShopContext)
+   
     const ContextValue=useContext(CartContext)
     const {productId}=useParams()
-     const product=all_product?.find((e)=>e.id===Number(productId))
+    const allProducts=state.data
     
-     const AddProducttoCart=()=>ContextValue.AddtoCart(product)
-    console.log(product.new_price)
- 
-      if (!product) {
+  if (state.loading) {
     return (
       <Container className="text-center mt-5">
         <h3>The product is Loding...</h3>
       </Container>
     );
+  }else if(!state.loading&&state.error){
+     return( <Container className="text-center mt-5">
+        <h3>There is somthing wrong!!</h3>
+      </Container>
+      )
   }
-  return (
+  else if(!state.loading&&state.data){
+      const product=allProducts?.find((e)=>Number(e.id)===Number(productId))
+    
+     const AddProducttoCart=()=>ContextValue.AddtoCart(product)
+     if(product){
+     console.log(product.image)
+     
+   return (
     <>
+
+
      <Container>
         <Row className='mt-lg-5'>
             <Col lg={1} className=' order-lg-1 order-2 col-12 '>
@@ -35,13 +47,13 @@ const Product = () => {
                     width:'100px',
                 }}>
                     <img src={product.image} alt="image" style={{height:'50%',width:'70%'}}  />
-                    <img src={product.image} alt="image" style={{height:'50%',width:'70%'}} />
+                    <img src={product.image}  alt="image" style={{height:'50%',width:'70%'}} />
                     <img src={product.image} alt="image"  style={{height:'50%',width:'70%'}}/>
-                    <img src={product.image} alt="image"style={{height:'50%',width:'70%'}} />
-                </div>
+                    <img src={product.image}  alt="image"style={{height:'50%',width:'70%'}} />
+                </div>"
             </Col>
             <Col lg={5} className=' order-lg-1 order-1 col-12'>
-              <img src={product.image} alt="image" style={{height:'100%'}} />
+              <img src={product.image}  alt="image" style={{height:'100%'}} />
             
             </Col>
              <Col  lg={5} style={{
@@ -67,7 +79,8 @@ const Product = () => {
                 <button style={{backgroundColor:'#fafafa',height:'50px',width:'50px',margin:'10px',border:'1px solid #e8e8e8ff'}}>XLL</button>
                 </div>
               </div>
-               <Button text={'ADD TO CART'} color={'white'} background={'#f33f3f'}  width={'140px'} onclick={AddProducttoCart} />
+               <span onClick={()=>confirm(" Product added to cart! ")}> <Button text={'ADD TO CART'} color={'white'} background={'#f33f3f'}  width={'140px'} onClick={AddProducttoCart}  /></span>
+             
               
               <p><b>Category:</b>Lorem ipsum dolor sit amet consectetu</p>
                             <p><b>Tags:</b>Lorem ipsum</p>
@@ -79,6 +92,16 @@ const Product = () => {
     
     </>
   )
+ }
+
+
+
+  }
+
+
+    
+    
+ 
 }
 
 export default Product

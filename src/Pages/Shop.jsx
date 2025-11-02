@@ -1,15 +1,23 @@
-import React from 'react'
+
 import Hero from '../components/Hero'
-import data_product from '../assets/data'
 import Item from '../components/Item'
 import Offers from '../components/Offers'
-
+import { useContext } from "react"
+import { ShopContext } from "../Context/ShopContext"
 import NewCollections from '../components/NewCollections'
 import exclusive_image from '../assets/exclusive_image.png';
 import Footer from '../components/Footer'
 import { Outlet } from 'react-router-dom'
+import {  use, useEffect, useReducer} from "react"
+
+import axios from "axios";
+import useApi from '../CustomHooks/useAPI';
 const Shop = () => {
-  return (
+   const state=useContext(ShopContext)
+   
+
+ 
+   return (
     <>
       <Hero/>
       <div className='popular' style={{minHeight:'90px' ,width:'100vw'}}>
@@ -24,9 +32,13 @@ const Shop = () => {
   }} 
 />
         <div className='shope_parent_render' style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'20px',marginTop:'25px',alignItems:'center'}}>
-          {data_product.map((item)=>{
-            return<Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
-          })}
+           {state.loading&&<h1>Loading...</h1>}
+         {state.error&&!loading&&<h1>Error:{state.error}</h1>}
+         {!state.loading&&state.popular_in_women&& (
+          state.popular_in_women.map((item)=>{
+                 return<Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
+         })
+         )}
         </div>
   <Offers image={exclusive_image} text1={'Exclustive'} text2={'offers For You'} textP={'ONLY ON BEST SELLERS PRODUCTS'} btnApper={true}/>
   <NewCollections/>

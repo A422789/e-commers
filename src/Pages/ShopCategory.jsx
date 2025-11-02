@@ -5,8 +5,9 @@ import Item from "../components/Item";
 import Footer from "../components/Footer";
 
 const shopCategory = ({category,banner}) => {
-  const ContextValue=useContext(ShopContext)
-  const all_product=ContextValue.all_product
+  const state=useContext(ShopContext)
+
+
   return (
     <div className="shopCategory" >
       <img src={banner} alt="image" style={{
@@ -31,11 +32,17 @@ const shopCategory = ({category,banner}) => {
         </div>
       </div>
       <div className='shope_parent_render' style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'20px',marginTop:'25px',alignItems:'center'}}> 
-         {all_product.map((item)=>{
+
+         {state.loading&&<h1>Loadind...</h1>}
+         {state.error&&!state.loading&&<h1>Error:{state.error}</h1>}
+         {!state.loading&&state.data&& (
+          state.data.map((item)=>{
           if(category===item.category){
             return<Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
           }else{return null}
-         })}
+         })
+         )}
+         
       </div>
       <Footer/>
     </div>

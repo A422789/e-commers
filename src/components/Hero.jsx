@@ -5,14 +5,18 @@ import hand_icon from '../assets/hand_icon.png';
 import arrow from '../assets/arrow.png';
 import hero_image from '../assets/hero_image.png';
 import Button from '../components/Button';
+import { useContext } from 'react';
+import { CartContext } from '../Context/CartContaxt';
 
 const Hero = () => {
+  const CotextValue=useContext(CartContext);
+
   return (
     <div className='hero'>
       <Container>
         <Row>
             <Col lg={6} className='mt-lg-6 order-lg-1 order-2'>
-             <p>NEW ARRIVALS ONLY</p>
+            {!CotextValue.isLoggedIn? <p>NEW ARRIVALS ONLY</p>:''}
              <h1  >new <img src={hand_icon} alt="image"/></h1> 
              <h1>collectins</h1>
              <h1>for everyone</h1>

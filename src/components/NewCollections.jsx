@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Item from './Item'
-import new_collections from '../assets/new_collections.js'
+
+import useApi from '../CustomHooks/useAPI.jsx'
+import { ShopContext } from '../Context/ShopContext.jsx'
 const NewCollections = () => {
+  const state=useContext(ShopContext)
   return (
     <div>
       <h1 style={{textAlign:'center'}}>NEW COLLECTIONS</h1>
@@ -15,9 +18,13 @@ const NewCollections = () => {
   }} 
 />
 <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'20px',marginTop:'45px',alignItems:'center'}}>
-          {new_collections.map((item)=>{
-            return<Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
-          })}
+             {state.loading&&<h1>Loadind...</h1>}
+         {state.error&&!state.loading&&<h1>Error:{state.error}</h1>}
+         {!state.loading&&state.new_collections&& (
+          state.new_collections.map((item)=>{
+                 return<Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
+         })
+         )}
         </div>
     </div>
   )

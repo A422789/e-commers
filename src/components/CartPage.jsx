@@ -29,6 +29,7 @@ const CartPage = () => {
         <tbody style={{borderBottom:'2px solid #d5d5d5',padding:'10px'}} >
          {cart.map((item)=>{
           total=item.new_price*item.quantity;
+          console.log(item.image)
           G_Total+=total;
           return <CartItem key={item.id} id={item.id} name={item.name} image={item.image} price={item.new_price} quantity={item.quantity} total={total}  />
          })}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = ({text,color,background,rudios,width,className,inner,btnApper,onclick}) => {
+const Button = ({text,color,background,rudios,width,className,inner,btnApper,onClick}) => {
   if(btnApper==false){
     return
   }else{
@@ -8,7 +8,7 @@ const Button = ({text,color,background,rudios,width,className,inner,btnApper,onc
  
   return (
     <div>
-      <button className={className} style={{borderRadius:rudios,textAlign:'center',height :'35px',lineHeight:'25px',width:width,color:color,border:'1px solid rgba(132, 129, 129, 1)',background:background}} onClick={onclick}>{text} {inner} </button>
+      <button className={className} style={{borderRadius:rudios,textAlign:'center',height :'35px',lineHeight:'25px',width:width,color:color,border:'1px solid rgba(132, 129, 129, 1)',background:background}} onClick={onClick} >{text} {inner} </button>
 
     </div>
   )
